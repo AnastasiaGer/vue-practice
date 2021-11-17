@@ -6,41 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vue</title>
     <link rel="stylesheet" href="theme.css" />
+    <style>
+      [v-cloak] {
+        display: none;
+      }
+    </style>
   </head>
   <body>
-    <div class="container" id="app">
-      <div class="card">
-        <h1
-          :style="{color: inputValue.length < 5 ? 'darkred' : 'darkblue',
-      fontSize: inputValue.length < 5 ? '2rem' : '3rem'
-      }"
-        >
-          {{ title }}
-        </h1>
-        <div class="form-control">
-          <input
-            type="text"
-            :placeholder="placeholderString"
-            v-model="inputValue"
-            @keypress.enter="addNewNote"
-          />
-        </div>
-        <button class="btn" v-on:click="addNewNote">Add</button>
-        <hr />
-        <ul class="list" v-if="notes.length !== 0">
-          <li class="list-item" v-for="(myNote, index) in notes" :key="index">
-            {{ toUpperCase(myNote) }}
-            <button class="btn danger" @click="removeNote(index)">
-              Delete
-            </button>
+    <div class="container pt-5" id="app" v-cloak>
+      <div class="card center">
+        <!-- <div v-html="myHtml"></div>
+        <h2 v-text="title"></h2>
+        <h2 v-once>{{title}}</h2>
+        <h2 v-pre>{{title}}</h2>
+
+        <button class="btn" @click="title = 'New title'">Change title</button> -->
+        <ul class="list" v-if="items.length">
+          <li class="list-item" v-for="(item, i) in items" :key="item" @click='items.splice(i,1)'>
+            {{item}}
           </li>
-          <hr />
-          <li>
-            <strong>Notes: {{ notes.length }}</strong> | Duplicate: {{
-            doubleCountComputed }}
-          </li>
+
+          <!-- <li class="list-item" v-for="(value, key, index) in person" :key="index">
+            {{key}} {{value}}
+          </li> -->
         </ul>
-        <div v-else>You have no Notes</div>
+        <div v-else>No items</div>
       </div>
     </div>
     <script src="https://unpkg.com/vue@next"></script>

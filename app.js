@@ -1,37 +1,14 @@
-const App = {
-  data() {
-    return {
-      placeholderString: "Add task text",
-      title: 'Task list',
-      inputValue: '',
-      notes: ['1 Note', '2 Note'],
-    }
+Vue.createApp({
+data: () => ({
+  title: 'I am title',
+  myHtml: '<h1>VUE 3<h1/>',
+  person: {
+    name: 'Ana',
+    lastName: 'Ger',
+    age: 35
   },
-  methods: {
-    addNewNote() {
-      if(this.inputValue !== '') {
-        this.notes.push(this.inputValue)
-        this.inputValue = ''
-      }
-    },
-    removeNote(index) {
-      this.notes.splice(index, 1)
-    },
-    toUpperCase(item) {
-      return item.toUpperCase()
-    },
-  },
-  computed: {
-    doubleCountComputed() {
-      return this.notes.length * 2
-    }
-  },
-  watch: {
-    inputValue(value) {
+  items: [1,2,3,4,5,6]
+})
 
-    }
-  }
-};
 
-Vue.createApp(App).mount('#app')
-
+}).mount('#app')
